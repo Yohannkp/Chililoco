@@ -1,0 +1,46 @@
+<section class="food_section layout_padding-bottom">
+    <div class="container">
+      <div class="heading_container heading_center">
+        <h2>
+          Liste des Responsables
+        </h2>
+      </div>
+
+      <ul class="">
+      {% if is_granted('ROLE_ADMIN') %}
+        <a href="{{path('AjouterResponsable')}}" class="btn btn-danger" >Ajouter</a>
+      {% endif %}
+      </ul>
+
+      <div class="filters-content">
+        <div class="row grid">
+        {% for responsable in responsables %}
+          <div class="col-sm-6 col-lg-4 all pizza">
+            <div class="box">
+              <div>
+                <div class="img-box">
+                  <img src="{{asset('images/ResponsableImages/')~ responsable.image}}" alt="">
+                </div>
+                <div class="detail-box">
+                  <h5>
+                    {{ responsable.nom }}
+                  </h5>
+
+                  <div class="d-flex justify-content-around"> 
+                        <a href="" class="btn btn-danger" >Modifier</a>
+                        <a href="" class="btn btn-danger" >Supprimer</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        {% endfor %}
+        </div>
+      </div>
+      <div class="btn-box">
+        <a href="">
+          Plus
+        </a>
+      </div>
+    </div>
+  </section>

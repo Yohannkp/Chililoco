@@ -1,0 +1,74 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Responsable{% endblock %}
+
+{% block body %}
+    <h1>Responsable</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ responsable.id }}</td>
+            </tr>
+            <tr>
+                <th>CreerPar</th>
+                <td>{{ responsable.CreerPar }}</td>
+            </tr>
+            <tr>
+                <th>CreerLe</th>
+                <td>{{ responsable.CreerLe ? responsable.CreerLe|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>ModifierPar</th>
+                <td>{{ responsable.ModifierPar }}</td>
+            </tr>
+            <tr>
+                <th>ModifierLe</th>
+                <td>{{ responsable.ModifierLe }}</td>
+            </tr>
+            <tr>
+                <th>Enable</th>
+                <td>{{ responsable.Enable ? 'Yes' : 'No' }}</td>
+            </tr>
+            <tr>
+                <th>Nom</th>
+                <td>{{ responsable.nom }}</td>
+            </tr>
+            <tr>
+                <th>Prenom</th>
+                <td>{{ responsable.prenom }}</td>
+            </tr>
+            <tr>
+                <th>Email</th>
+                <td>{{ responsable.email }}</td>
+            </tr>
+            <tr>
+                <th>Telephone</th>
+                <td>{{ responsable.telephone }}</td>
+            </tr>
+            <tr>
+                <th>MotDePasse</th>
+                <td>{{ responsable.MotDePasse }}</td>
+            </tr>
+            <tr>
+                <th>Roles</th>
+                <td>{{ responsable.roles ? responsable.roles|json_encode : '' }}</td>
+            </tr>
+            <tr>
+                <th>Username</th>
+                <td>{{ responsable.Username }}</td>
+            </tr>
+            <tr>
+                <th>Fonction</th>
+                <td>{{ responsable.fonction }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_responsable_index') }}">back to list</a>
+
+    <a href="{{ path('app_responsable_edit', {'id': responsable.id}) }}">edit</a>
+
+    {{ include('responsable/_delete_form.html.twig') }}
+{% endblock %}

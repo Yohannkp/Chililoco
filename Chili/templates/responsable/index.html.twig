@@ -1,0 +1,59 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Responsable index{% endblock %}
+
+{% block body %}
+    <h1>Responsable index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>CreerPar</th>
+                <th>CreerLe</th>
+                <th>ModifierPar</th>
+                <th>ModifierLe</th>
+                <th>Enable</th>
+                <th>Nom</th>
+                <th>Prenom</th>
+                <th>Email</th>
+                <th>Telephone</th>
+                <th>MotDePasse</th>
+                <th>Roles</th>
+                <th>Username</th>
+                <th>Fonction</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for responsable in responsables %}
+            <tr>
+                <td>{{ responsable.id }}</td>
+                <td>{{ responsable.CreerPar }}</td>
+                <td>{{ responsable.CreerLe ? responsable.CreerLe|date('Y-m-d') : '' }}</td>
+                <td>{{ responsable.ModifierPar }}</td>
+                <td>{{ responsable.ModifierLe }}</td>
+                <td>{{ responsable.Enable ? 'Yes' : 'No' }}</td>
+                <td>{{ responsable.nom }}</td>
+                <td>{{ responsable.prenom }}</td>
+                <td>{{ responsable.email }}</td>
+                <td>{{ responsable.telephone }}</td>
+                <td>{{ responsable.MotDePasse }}</td>
+                <td>{{ responsable.roles ? responsable.roles|json_encode : '' }}</td>
+                <td>{{ responsable.Username }}</td>
+                <td>{{ responsable.fonction }}</td>
+                <td>
+                    <a href="{{ path('app_responsable_show', {'id': responsable.id}) }}">show</a>
+                    <a href="{{ path('app_responsable_edit', {'id': responsable.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="15">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_responsable_new') }}">Create new</a>
+{% endblock %}

@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block menu %}
+
+{% endblock %}
+
+{% block header %}
+
+<form role="form" method="post" action="{{path('login')}}" onsubmit="" class="trip-form">
+
+    {% if error %}
+        <div class="alert alert-primary" role="alert">Authentification Echouée</div>
+    {% endif %}
+  <div class="d-flex justify-content-center">
+    
+    <div class="mb-3 mb-md-0 col-md-3">
+      <div class="form-control-wrap">
+        <input type="texte" id="cf-4" placeholder="UserName" name="_username" value="{{LastUsername}}" class="form-control">
+      </div>
+    </div>
+
+    <div class="mb-3 mb-md-0 col-md-3">
+      <div class="form-control-wrap">
+        <input type="password" id="cf-4" placeholder="Password" name="_password" class="form-control">
+      </div>
+    </div>
+
+    <div class="mb-3 mb-md-0 col-md-3">
+      <div class="form-control-wrap">
+        
+      </div>
+    </div>
+
+    <div class="mb-3 mb-md-0 col-md-3">
+      <button class="btn btn-primary btn-block py-3">Sign in</button>
+    </div>
+    <input type="hidden" name="_target_path" value="{{path('admin')}}">
+
+  </div>
+  
+</form>
+
+{% endblock %}
+
+{% block footer %}
+ 
+{% endblock %}

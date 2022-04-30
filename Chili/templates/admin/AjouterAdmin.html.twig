@@ -1,0 +1,9 @@
+{% extends 'base.html.twig' %}
+
+{% block ListMenu %}
+
+
+    {{ include('admin/_form.html.twig') }}
+
+    <a href="{{ path('admin') }}">back to list</a>
+{% endblock %}

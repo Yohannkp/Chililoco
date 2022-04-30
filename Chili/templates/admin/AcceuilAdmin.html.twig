@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block class %} sub_page {% endblock %}
+{% block ListMenu %}
+    {% if is_granted('ROLE_ADMIN') %}
+        {% include 'admin/ListeAdmin.html.twig' %}
+    {% endif %}
+    {% if is_granted('ROLE_RESPONSABLE') %}
+        {% include 'responsable/ListeResponsable.html.twig' %}
+    {% endif %}
+{% endblock %}
