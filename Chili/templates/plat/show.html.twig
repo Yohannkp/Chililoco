@@ -3,40 +3,39 @@
 {% block title %}Plat{% endblock %}
 
 {% block ListMenu %}
-    <section class="book_section layout_padding">
-        <div class="col-md-6">
-            <div class="container">
-                <div class="heading_container">
-                    <h2>Informations sur un plat</h2>
-                </div>
-            <div class="form_container">
+<center>
+    
 
-   <table class="table table-dark">
-        <tbody>
             
-            <tr>
-                <th>Libelle</th>
-                <td>{{ plat.libelle }}</td>
-            </tr>
-            <tr>
-                <th>Image</th>
-                <td>{{ plat.image }}</td>
-            </tr>
-            <tr>
-                <th>Prix</th>
-                <td>{{ plat.Prix }}</td>
-            </tr>
-            <tr>
-                <th>Categorie</th>
-                <td>{{ categorie.libelle }}</td>
-            </tr>
-        </tbody>
-    </table>
+                  <div class="col-sm-6 col-lg-4 all {{ plat.categorieplat.libelle }}">
+                    <div class="box">
+                      <div>
+                        <div class="img-box">
+                          <img src="{{asset('images/PlatImages/')~ plat.image}}" alt="">
+                        </div>
+                        <div class="detail-box">
+                          <h5>
+                            {{ plat.libelle }}
+                          </h5>
+                          <p>
+                            {{ plat.description }}
+                          </p> 
+                          <div class="options">
+                            <h6 style="color: rgb(255, 53, 53);">
+                              {{plat.Prix}} FCFA
+                            </h6>
+                           
+                            <a href="">
+                              
+                            </a>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  
 
-</div>
-</div>
-</div>
-</section>
+
 
    
     <a href="{{ path('Menu') }}">back to list</a>
@@ -50,5 +49,5 @@
     {% if plat.statut == true %}
     {{ include('plat/_delete_form.html.twig') }}
     {% endif %}
-    
+    </center>
 {% endblock %}

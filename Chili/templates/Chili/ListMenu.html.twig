@@ -17,7 +17,7 @@
         <li data-filter=".Burger">Burger</li>
         <li data-filter=".Pizza">Pizza</li>
         <li data-filter=".Boisson">Boisson</li>
-        <li data-filter=".Frittes">Fries  {{statut}}</li>
+        <li data-filter=".Frittes">Frittes</li>
       </ul>
 
       <div class="filters-content">
@@ -39,14 +39,18 @@
                   </p> 
                   <div class="options">
                     <h6>
-                      {{plat.Prix}}
+                      {{plat.Prix}} FCFA
                     </h6>
                    
                     <a href="">
                       
                     </a>
-                  </div><a href="{{path('app_plat_edit',{'id':plat.id})}}" class="btn btn-danger" >Modifier</a>
-                  <a href="{{path('app_plat_show',{'id':plat.id})}}" class="btn btn-danger" >Show</a>
+                    
+                  </div>
+                  {% if is_granted('ROLE_RESPONSABLE') %}
+                    <a href="{{path('app_plat_edit',{'id':plat.id})}}" class="btn btn-danger" >Modifier</a>
+                    <a href="{{path('app_plat_show',{'id':plat.id})}}" class="btn btn-danger" >Show</a>
+                      {% endif %}
                 </div>
               </div>
             </div>
@@ -55,11 +59,14 @@
         {% endfor %}
         </div>
       </div>
+      
       <div class="btn-box">
+        {% if is_granted('ROLE_RESPONSABLE') %}
         <a href="{{path('corbeille')}}">
           <i class="fa fa-trash" aria-hidden="true">
           </i>Corbeille
-        </a>        
+        </a>  
+        {% endif %}
       </div>
     </div>
   </section>

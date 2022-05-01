@@ -44,6 +44,7 @@ security:
     access_control:
         - { path: ^/admin, roles: ROLE_RESPONSABLE }
         - { path: ^/responsable, roles: ROLE_RESPONSABLE }
+        - { path: ^/Corbeille, roles: ROLE_RESPONSABLE }
     
     role_hierarchy:
         ROLE_RESPONSABLE: ROLE_USER
