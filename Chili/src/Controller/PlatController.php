@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Plat;
 use App\Form\PlatType;
+use App\Repository\CategorieRepository;
 use App\Repository\PlatRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -33,7 +34,7 @@ class PlatController extends AbstractController
     }
 
     #[Route('/AjouterUnPlat', name: 'AjouterPlat', methods: ['GET', 'POST'])]
-    public function new(Request $request, PlatRepository $platRepository): Response
+    public function new(Request $request, PlatRepository $platRepository ,CategorieRepository $categorie): Response
     {
         $plat = new Plat();
         $form = $this->createForm(PlatType::class, $plat);
@@ -48,6 +49,11 @@ class PlatController extends AbstractController
         $date=new \DateTime('@'.strtotime('now'));
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $categoriee = $_POST['categorie']/*$form->get('categorie')->getData()*/;
+            $categorieplat = $_POST['categorie'];
+            $rechherche = $categorie->find($categorieplat);
+            $plat->setCategoriePlat($rechherche);
+            $plat->setCategorie($categoriee);
             $webpath=$this->params->get("kernel.project_dir").'/public/images/PlatImages/';
             $chemin=$webpath.$_FILES['plat']["name"]["image"];
             $destination=move_uploaded_file($_FILES['plat']['tmp_name']['image'],$chemin);
@@ -62,6 +68,7 @@ class PlatController extends AbstractController
         return $this->renderForm('plat/AjouterUnPlat.html.twig', [
             'plat' => $plat,
             'form' => $form,
+            'categories'=>$categorie->findAll()
         ]);
     }
 

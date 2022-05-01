@@ -3,10 +3,11 @@
 namespace App\Form;
 
 use App\Entity\Plat;
+use Doctrine\ORM\Mapping\Entity;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\Form\Extension\Core\Type\FileType;
 
 class PlatType extends AbstractType
 {
@@ -14,11 +15,9 @@ class PlatType extends AbstractType
     {
         $builder
             ->add('libelle')
-            ->add('description')
-            ->add('categorie')
-            ->add('Prix')
             ->add('image', FileType::class, ['mapped'=>false,'attr'=>['name'=>'image','required'=>false]])
-         
+            ->add('Prix')
+            ->add('description')
         ;
     }
 

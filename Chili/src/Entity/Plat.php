@@ -31,6 +31,10 @@ class Plat extends ActionsInfos
     #[ORM\Column(type: 'string', length: 255)]
     private $categorie;
 
+    #[ORM\ManyToOne(targetEntity: Categorie::class, inversedBy: 'categorie')]
+    #[ORM\JoinColumn(nullable: false)]
+    private $CategoriePlat;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -104,6 +108,18 @@ class Plat extends ActionsInfos
     public function setCategorie(string $categorie): self
     {
         $this->categorie = $categorie;
+
+        return $this;
+    }
+
+    public function getCategoriePlat(): ?Categorie
+    {
+        return $this->CategoriePlat;
+    }
+
+    public function setCategoriePlat(?Categorie $CategoriePlat): self
+    {
+        $this->CategoriePlat = $CategoriePlat;
 
         return $this;
     }

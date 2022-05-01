@@ -14,16 +14,16 @@
 
       <ul class="filters_menu">
         <li class="active" data-filter="*">All</li>
-        <li data-filter=".burger">Burger</li>
-        <li data-filter=".pizza">Pizza</li>
-        <li data-filter=".pasta">Pasta</li>
-        <li data-filter=".fries">Fries</li>
+        <li data-filter=".Burger">Burger</li>
+        <li data-filter=".Pizza">Pizza</li>
+        <li data-filter=".Pasta">Pasta</li>
+        <li data-filter=".Fries">Fries</li>
       </ul>
 
       <div class="filters-content">
         <div class="row grid">
         {% for plat in plats %}
-          <div class="col-sm-6 col-lg-4 all {{ plat.categorie }}">
+          <div class="col-sm-6 col-lg-4 all {{ plat.categorieplat.libelle }}">
             <div class="box">
               <div>
                 <div class="img-box">
