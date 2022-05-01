@@ -3,9 +3,12 @@
 namespace App\Form;
 
 use App\Entity\Plat;
+use Doctrine\DBAL\Types\FloatType;
+use Doctrine\DBAL\Types\StringType;
 use Doctrine\ORM\Mapping\Entity;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -15,9 +18,9 @@ class PlatType extends AbstractType
     {
         $builder
             ->add('libelle')
-            ->add('image', FileType::class, ['mapped'=>false,'attr'=>['name'=>'image','required'=>false]])
+            ->add('image', FileType::class, ['mapped'=>false,'attr'=>['class'=>'form-control','name'=>'image','required'=>false]])
             ->add('Prix')
-            ->add('description')
+            ->add('description',TextareaType::class, ['attr' => ['class' => 'form-control']])
         ;
     }
 

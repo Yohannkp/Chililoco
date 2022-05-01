@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\PlatRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: PlatRepository::class)]
 class Plat extends ActionsInfos
@@ -19,7 +20,11 @@ class Plat extends ActionsInfos
     #[ORM\Column(type: 'string', length: 255)]
     private $image;
 
-    #[ORM\Column(type: 'string', length: 255)]
+    #[ORM\Column(type: 'integer', length: 255)]
+    /**
+     * @Assert\NotBlank
+     * @Assert\Length(min=3,max=5)
+     */
     private $Prix;
 
     #[ORM\ManyToOne(targetEntity: Personne::class, inversedBy: 'plat')]
@@ -34,6 +39,12 @@ class Plat extends ActionsInfos
     #[ORM\ManyToOne(targetEntity: Categorie::class, inversedBy: 'categorie')]
     #[ORM\JoinColumn(nullable: false)]
     private $CategoriePlat;
+
+    #[ORM\Column(type: 'boolean')]
+    private $statut;
+
+
+    
 
     public function getId(): ?int
     {
@@ -120,6 +131,18 @@ class Plat extends ActionsInfos
     public function setCategoriePlat(?Categorie $CategoriePlat): self
     {
         $this->CategoriePlat = $CategoriePlat;
+
+        return $this;
+    }
+
+    public function getStatut(): ?bool
+    {
+        return $this->statut;
+    }
+
+    public function setStatut(bool $statut): self
+    {
+        $this->statut = $statut;
 
         return $this;
     }
