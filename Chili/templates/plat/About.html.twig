@@ -15,16 +15,16 @@
             <div class="u-container-style u-group u-shape-rectangle u-white u-group-1">
               <div class="u-container-layout u-container-layout-2"><!--product_title-->
                 <h2 class="u-align-center u-product-control u-text u-text-default u-text-1">
-                  <a class="u-product-title-link" href="#"><!--product_title_content-->Sample Product<!--/product_title_content--></a>
+                  <a class="u-product-title-link" href="#"><!--product_title_content-->{{plat.libelle}}<!--/product_title_content--></a>
                 </h2><!--/product_title--><!--product_price-->
                 <div class="u-product-control u-product-price u-product-price-1">
                   <div class="u-price-wrapper u-spacing-10"><!--product_old_price-->
                     <div class="u-hide-price u-old-price" style="text-decoration: line-through !important;" wfd-invisible="true"><!--product_old_price_content-->$12<!--/product_old_price_content--></div><!--/product_old_price--><!--product_regular_price-->
-                    <div class="u-price" style="font-size: 4.5rem; font-weight: 700;"><!--product_regular_price_content-->$9.95<!--/product_regular_price_content--></div><!--/product_regular_price-->
+                    <div class="u-price" style="font-size: 4.5rem; font-weight: 700;"><!--product_regular_price_content-->{{plat.prix}}<!--/product_regular_price_content--></div><!--/product_regular_price-->
                   </div>
                 </div><!--/product_price--><!--product_content-->
                 <div class="u-align-center u-product-control u-product-desc u-text u-text-grey-15 u-text-2"><!--product_content_content-->
-                  <p>Sample text. Lorem ipsum dolor sit amet, consectetur adipiscing elit nullam nunc justo sagittis suscipit ultrices.</p><!--/product_content_content-->
+                  <p>{{plat.description}}</p><!--/product_content_content-->
                 </div><!--/product_content--><!--product_button--><!--options_json--><!--{"clickType":"add-to-cart","content":"Boutton"}--><!--/options_json-->
                 <a href="{{ path('app_plat_edit', {'id': plat.id}) }}" style="float: left;" class="u-btn u-button-style u-hover-feature u-hover-palette-1-dark-1 u-product-control u-btn-2" data-animation-name="customAnimationIn" data-animation-duration="1000" data-animation-direction=""><!--product_button_content-->Modifier<!--/product_button_content--></a><!--/product_button-->
                 {% if plat.statut == false %}

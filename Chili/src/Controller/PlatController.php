@@ -80,7 +80,7 @@ class PlatController extends AbstractController
     #[Route('/{id}', name: 'app_plat_show', methods: ['GET'])]
     public function show(Plat $plat, CategorieRepository $categorie): Response
     {
-        return $this->render('About.html.twig', [
+        return $this->render('plat/About.html.twig', [
             'plat' => $plat,
             'categorie'=>$categorie->find($plat->getCategorie())
         ]);
