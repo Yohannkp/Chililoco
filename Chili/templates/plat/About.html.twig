@@ -26,11 +26,15 @@
                 <div class="u-align-center u-product-control u-product-desc u-text u-text-grey-15 u-text-2"><!--product_content_content-->
                   <p>{{plat.description}}</p><!--/product_content_content-->
                 </div><!--/product_content--><!--product_button--><!--options_json--><!--{"clickType":"add-to-cart","content":"Boutton"}--><!--/options_json-->
-                <a href="{{ path('app_plat_edit', {'id': plat.id}) }}" style="float: left;" class="u-btn u-button-style u-hover-feature u-hover-palette-1-dark-1 u-product-control u-btn-2" data-animation-name="customAnimationIn" data-animation-duration="1000" data-animation-direction=""><!--product_button_content-->Modifier<!--/product_button_content--></a><!--/product_button-->
                 {% if plat.statut == false %}
-                <a href="{{path('app_plat_restauration', {'id': plat.id})}}" style="margin-top: 80px;" class="u-btn u-button-style u-hover-palette-1-dark-1 u-palette-1-base u-btn-3" data-animation-name="customAnimationIn" data-animation-duration="1000">Restaurer</a>
+                <a href="{{ path('SupprimerDef', {'id': plat.id}) }}" style="float: left;" class="u-btn u-button-style u-hover-feature u-hover-palette-1-dark-1 u-product-control u-btn-2" data-animation-name="customAnimationIn" data-animation-duration="1000" data-animation-direction=""><!--product_button_content-->SupprimerDef<!--/product_button_content--></a><!--/product_button-->
                 {% else %}
-                <form method="post" action="{{ path('app_plat_delete', {'id': plat.id}) }}" style="margin-left: 280px;"  onsubmit="return confirm('Are you sure you want to delete this item?');">
+                <a href="{{ path('ModifierPlat', {'id': plat.id}) }}" style="float: left;" class="u-btn u-button-style u-hover-feature u-hover-palette-1-dark-1 u-product-control u-btn-2" data-animation-name="customAnimationIn" data-animation-duration="1000" data-animation-direction=""><!--product_button_content-->Modifier<!--/product_button_content--></a><!--/product_button-->
+                {% endif %}
+                {% if plat.statut == false %}
+                <a href="{{path('RestaurerPlat', {'id': plat.id})}}" style="margin-top: 80px;" class="u-btn u-button-style u-hover-palette-1-dark-1 u-palette-1-base u-btn-3" data-animation-name="customAnimationIn" data-animation-duration="1000">Restaurer</a>
+                {% else %}
+                <form method="post" action="{{ path('SupprimerPlat', {'id': plat.id}) }}" style="margin-left: 280px;"  onsubmit="return confirm('Are you sure you want to delete this item?');">
                   <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ plat.id) }}">
                   <button class="u-btn u-button-style u-hover-feature u-hover-palette-1-dark-1 u-product-control u-btn-2" data-animation-name="customAnimationIn" data-animation-duration="1000" data-animation-direction="">Delete</button>
               </form>

@@ -45,6 +45,15 @@ class PlatRepository extends ServiceEntityRepository
         }
     }
 
+    public function findlastPlat()
+    {
+        return $this->createQueryBuilder('p')
+            ->orderBy('p.libelle', 'DESC')
+            ->setMaxResults(2)
+            ->getQuery()
+            ->getResult()
+        ;
+    }
     // /**
     //  * @return Plat[] Returns an array of Plat objects
     //  */

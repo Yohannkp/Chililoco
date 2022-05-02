@@ -13,64 +13,67 @@ use Symfony\Component\Routing\Annotation\Route;
 #[Route('/categorie')]
 class CategorieController extends AbstractController
 {
-    #[Route('/', name: 'app_categorie_index', methods: ['GET'])]
-    public function index(CategorieRepository $categorieRepository): Response
+    #[Route('/', name: 'categorie', methods: ['GET'])]
+    public function Acceuil(CategorieRepository $categorieRepository): Response
     {
-        return $this->render('categorie/index.html.twig', [
+        return $this->render('categorie/AcceuilCategorie.html.twig', [
             'categories' => $categorieRepository->findAll(),
         ]);
     }
 
-    #[Route('/new', name: 'app_categorie_new', methods: ['GET', 'POST'])]
-    public function new(Request $request, CategorieRepository $categorieRepository): Response
+    #[Route('/AjouterUneCategorie', name: 'AjouterCategorie', methods: ['GET', 'POST'])]
+    public function Ajouter(Request $request, CategorieRepository $categorieRepository): Response
     {
         $categorie = new Categorie();
         $form = $this->createForm(CategorieType::class, $categorie);
         $form->handleRequest($request);
-
+        $user = $this->getUser();
+        $username=$user->getUserIdentifier();
+        $date=new \DateTime('@'.strtotime('now'));
         if ($form->isSubmitted() && $form->isValid()) {
+            $categorie->setCreerPar($username);
+            $categorie->setCreerLe($date);
+            $categorie->setEnable(true);
             $categorieRepository->add($categorie);
-            return $this->redirectToRoute('app_categorie_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('categorie', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('categorie/new.html.twig', [
+        return $this->renderForm('categorie/AjouterCategorie.html.twig', [
             'categorie' => $categorie,
             'form' => $form,
         ]);
     }
 
-    #[Route('/{id}', name: 'app_categorie_show', methods: ['GET'])]
-    public function show(Categorie $categorie): Response
+    #[Route('/InformationsDeLaCategorieN/{id}', name: 'InfosCategorie', methods: ['GET'])]
+    public function Informations(Categorie $categorie): Response
     {
-        return $this->render('categorie/show.html.twig', [
+        return $this->render('categorie/InfosCategorie.html.twig', [
             'categorie' => $categorie,
         ]);
     }
 
-    #[Route('/{id}/edit', name: 'app_categorie_edit', methods: ['GET', 'POST'])]
-    public function edit(Request $request, Categorie $categorie, CategorieRepository $categorieRepository): Response
+    #[Route('/ModifierLaCategorieN/{id}', name: 'ModifierCategorie', methods: ['GET', 'POST'])]
+    public function Modifier(Request $request, Categorie $categorie, CategorieRepository $categorieRepository): Response
     {
         $form = $this->createForm(CategorieType::class, $categorie);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $categorieRepository->add($categorie);
-            return $this->redirectToRoute('app_categorie_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('categorie', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('categorie/edit.html.twig', [
+        return $this->renderForm('categorie/ModifierCategorie.html.twig', [
             'categorie' => $categorie,
             'form' => $form,
         ]);
     }
 
-    #[Route('/{id}', name: 'app_categorie_delete', methods: ['POST'])]
+    #[Route('/SupprimerLaCategorieN/{id}', name: 'SupprimerCategorie', methods: ['GET', 'POST'])]
     public function delete(Request $request, Categorie $categorie, CategorieRepository $categorieRepository): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$categorie->getId(), $request->request->get('_token'))) {
             $categorieRepository->remove($categorie);
-        }
 
-        return $this->redirectToRoute('app_categorie_index', [], Response::HTTP_SEE_OTHER);
+        return $this->redirectToRoute('categorie', [], Response::HTTP_SEE_OTHER);
     }
 }

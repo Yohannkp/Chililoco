@@ -5,12 +5,11 @@
 {% block class %} sub_page {% endblock %}
 
 {% block ListMenu %}
-    <h1>Create new Categorie</h1>
     <section class="book_section layout_padding">
         <div class="col-md-6">
             <div class="container">
                 <div class="heading_container">
-                    <h2>Creation D'un Responsable</h2>
+                    <h2>Ajouter une Categorie</h2>
                 </div>
             <div class="form_container">
 
@@ -21,5 +20,5 @@
 </div>
 </section>
 
-    <a href="{{ path('app_categorie_index') }}">back to list</a>
+    <a href="{{ path('categorie') }}" class="btn btn-dark" >Page Categorie</a>
 {% endblock %}

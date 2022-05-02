@@ -8,7 +8,8 @@
 
       <ul class="">
       {% if is_granted('ROLE_RESPONSABLE') %}
-        <a href="{{path('AjouterPlat')}}" class="btn btn-danger" >Ajouter</a>
+        <a href="{{path('AjouterPlat')}}" class="btn btn-dark" >Ajouter Plat</a>
+        <a href="{{path('AjouterCategorie')}}" class="btn btn-dark" >Ajouter Categorie</a>
       {% endif %}
       </ul>
 
@@ -23,38 +24,40 @@
       <div class="filters-content">
         <div class="row grid">
         {% for plat in plats %}
-        {% if plat.statut == statut %}
-          <div class="col-sm-6 col-lg-4 all {{ plat.categorieplat.libelle }}">
-            <div class="box">
-              <div>
-                <div class="img-box">
-                  <img src="{{asset('images/PlatImages/')~ plat.image}}" alt="">
-                </div>
-                <div class="detail-box">
-                  <h5>
-                    {{ plat.libelle }}
-                  </h5>
-                  <p>
-                    {{ plat.description }}
-                  </p> 
-                  <div class="options">
-                    <h6>
-                      {{plat.Prix}} FCFA
-                    </h6>
-                   
-                    <a href="">
-                      
-                    </a>
-                    
+          {% if plat.statut == statut %}
+            <div class="col-sm-6 col-lg-4 all {{ plat.categorieplat.libelle }}">
+              <div class="box">
+                <div>
+                  <div class="img-box">
+                    <img src="{{asset('images/PlatImages/')~ plat.image}}" alt="">
                   </div>
-                  {% if is_granted('ROLE_RESPONSABLE') %}
-                    <a href="{{path('app_plat_edit',{'id':plat.id})}}" class="btn btn-danger" >Modifier</a>
-                    <a href="{{path('app_plat_show',{'id':plat.id})}}" class="btn btn-danger" >Show</a>
-                      {% endif %}
+                  <div class="detail-box">
+                    <h5>
+                      {{ plat.libelle }}
+                    </h5>
+                    <p>
+                      {{ plat.description }}
+                    </p> 
+                    <div class="options">
+                      <h6>
+                        {{plat.Prix}} FCFA
+                      </h6>
+                    
+                      <a href="">
+                        
+                      </a>
+                      
+                    </div>
+                    {% if is_granted('ROLE_RESPONSABLE') %}
+                    <div class="d-flex justify-content-around">
+                      <a href="{{path('ModifierPlat',{'id':plat.id})}}" class="btn btn-danger">Modifier</a>
+                      <a href="{{path('InfosPlat',{'id':plat.id})}}" class="btn btn-dark">InfosPlat</a>
+                    </div>
+                    {% endif %}
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
           {% endif %}
         {% endfor %}
         </div>

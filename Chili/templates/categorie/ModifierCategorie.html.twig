@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Categorie{% endblock %}
+{% block class %} sub_page {% endblock %}
+
+{% block ListMenu %}
+     <div class="heading_container heading_center">
+        <h2>
+          Modifier Categorie
+        </h2>
+      </div>
+
+    {{ include('categorie/_form.html.twig', {'button_label': 'Modifier'}) }}
+
+
+{% endblock %}

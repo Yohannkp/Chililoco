@@ -7,7 +7,7 @@
       </div>
 
       <ul class="">
-        <a href="{{path('AjouterAdmin')}}" class="btn btn-danger" >Ajouter</a>
+        <a href="{{path('AjouterAdmin')}}" class="btn btn-dark" >Ajouter</a>
       </ul>
 
       <div class="filters-content">
@@ -25,8 +25,8 @@
                   </h5>
 
                   <div class="d-flex justify-content-around"> 
-                        <a href="" class="btn btn-danger" >Modifier</a>
-                        <a href="{{ path('app_plat_delete', {'id': admin.id}) }}" class="btn btn-danger" >Supprimer</a>
+                        <a href="{{ path('ModifierAdmin', {'id': admin.id}) }}" class="btn btn-danger" >Modifier</a>
+                        <a href="{{ path('SupprimerAdmin', {'id': admin.id}) }}" class="btn btn-dark" >Supprimer</a>
                   </div>
                 </div>
               </div>

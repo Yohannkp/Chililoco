@@ -25,7 +25,7 @@ class AdminController extends AbstractController
     }
     
     #[Route('/', name: 'admin', methods: ['GET'])]
-    public function index(AdminRepository $adminRepository,responsableRepository $responsableRepository): Response
+    public function Acceuil(AdminRepository $adminRepository,responsableRepository $responsableRepository): Response
     {
         return $this->render('admin/AcceuilAdmin.html.twig', [
             'admins' => $adminRepository->findAll(),
@@ -68,38 +68,38 @@ class AdminController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}', name: 'app_admin_show', methods: ['GET'])]
-    public function show(Admin $admin): Response
+    #[Route('/InformationsDeLAdminN/{id}', name: 'InfosAdmin', methods: ['GET'])]
+    public function InfosAdmin(Admin $admin): Response
     {
-        return $this->render('admin/show.html.twig', [
+        return $this->render('admin/InfosAdmin.html.twig', [
             'admin' => $admin,
         ]);
     }
 
-    #[Route('/{id}/edit', name: 'app_admin_edit', methods: ['GET', 'POST'])]
-    public function edit(Request $request, Admin $admin, AdminRepository $adminRepository): Response
+    #[Route('/ModifierLAdminN/{id}', name: 'ModifierAdmin', methods: ['GET', 'POST'])]
+    public function ModifierAdmin(Request $request, Admin $admin, AdminRepository $adminRepository): Response
     {
         $form = $this->createForm(AdminType::class, $admin);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $adminRepository->add($admin);
-            return $this->redirectToRoute('app_admin_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('admin', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('admin/edit.html.twig', [
+        return $this->renderForm('admin/ModifierAdmin.html.twig', [
             'admin' => $admin,
             'form' => $form,
         ]);
     }
 
-    #[Route('/{id}', name: 'app_admin_delete', methods: ['POST'])]
-    public function delete(Request $request, Admin $admin, AdminRepository $adminRepository): Response
+    #[Route('/SupprimerLAdminN/{id}', name: 'SupprimerAdmin', methods: ['POST'])]
+    public function Supprimer(Request $request, Admin $admin, AdminRepository $adminRepository): Response
     {
         if ($this->isCsrfTokenValid('delete'.$admin->getId(), $request->request->get('_token'))) {
             $adminRepository->remove($admin);
         }
 
-        return $this->redirectToRoute('app_admin_index', [], Response::HTTP_SEE_OTHER);
+        return $this->redirectToRoute('admin', [], Response::HTTP_SEE_OTHER);
     }
 }

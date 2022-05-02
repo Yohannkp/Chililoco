@@ -26,7 +26,7 @@ class ResponsableController extends AbstractController
     }
 
     #[Route('/', name: 'responsable', methods: ['GET'])]
-    public function index(AdminRepository $adminRepository,ResponsableRepository $responsableRepository): Response
+    public function Acceuil(AdminRepository $adminRepository,ResponsableRepository $responsableRepository): Response
     {
         return $this->render('admin/AcceuilAdmin.html.twig', [
             'admins' => $adminRepository->findAll(),
@@ -35,7 +35,7 @@ class ResponsableController extends AbstractController
     }
 
     #[Route('/AjouterUnResponsable', name: 'AjouterResponsable', methods: ['GET', 'POST'])]
-    public function new(Request $request, ResponsableRepository $responsableRepository,UserPasswordHasherInterface $passwordhash): Response
+    public function Ajouter(Request $request, ResponsableRepository $responsableRepository,UserPasswordHasherInterface $passwordhash): Response
     {
         $responsable = new Responsable();
         $form = $this->createForm(ResponsableType::class, $responsable);
@@ -69,38 +69,38 @@ class ResponsableController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}', name: 'app_responsable_show', methods: ['GET'])]
-    public function show(Responsable $responsable): Response
+    #[Route('/InfosDuResponsablenN/{id}', name: 'InfosResponsable', methods: ['GET'])]
+    public function Infos(Responsable $responsable): Response
     {
-        return $this->render('responsable/show.html.twig', [
+        return $this->render('responsable/InfosResponsable.html.twig', [
             'responsable' => $responsable,
         ]);
     }
 
-    #[Route('/{id}/edit', name: 'app_responsable_edit', methods: ['GET', 'POST'])]
-    public function edit(Request $request, Responsable $responsable, ResponsableRepository $responsableRepository): Response
+    #[Route('/ModifierLeResponsableN/{id}', name: 'ModifierResponsable', methods: ['GET', 'POST'])]
+    public function Modifier(Request $request, Responsable $responsable, ResponsableRepository $responsableRepository): Response
     {
         $form = $this->createForm(ResponsableType::class, $responsable);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $responsableRepository->add($responsable);
-            return $this->redirectToRoute('app_responsable_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('admin', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('responsable/edit.html.twig', [
+        return $this->renderForm('responsable/ModifierPlat.html.twig', [
             'responsable' => $responsable,
             'form' => $form,
         ]);
     }
 
-    #[Route('/{id}', name: 'app_responsable_delete', methods: ['POST'])]
-    public function delete(Request $request, Responsable $responsable, ResponsableRepository $responsableRepository): Response
+    #[Route('/SupprimerLeResponsableN/{id}', name: 'SupprimerResponsable', methods: ['POST'])]
+    public function Supprimer(Request $request, Responsable $responsable, ResponsableRepository $responsableRepository): Response
     {
         if ($this->isCsrfTokenValid('delete'.$responsable->getId(), $request->request->get('_token'))) {
             $responsableRepository->remove($responsable);
         }
 
-        return $this->redirectToRoute('app_responsable_index', [], Response::HTTP_SEE_OTHER);
+        return $this->redirectToRoute('admin', [], Response::HTTP_SEE_OTHER);
     }
 }

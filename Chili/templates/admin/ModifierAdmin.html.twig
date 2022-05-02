@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block class %} sub_page {% endblock %}
+{% block ListMenu %}
+    <div class="heading_container">
+        <h2>Modification Admin</h2>
+    </div>
+    {% form_theme form 'bootstrap_4_layout.html.twig' %}
+    {{ include('admin/_form.html.twig', {'button_label': 'Modifier'}) }}
+
+    <a href="{{ path('admin') }}" class="btn btn-danger" >Page Admin</a>
+    
+{% endblock %}

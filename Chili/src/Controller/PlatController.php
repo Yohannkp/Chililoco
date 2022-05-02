@@ -27,7 +27,7 @@ class PlatController extends AbstractController
 
 
     #[Route('/', name: 'ListePlat', methods: ['GET'])]
-    public function index(PlatRepository $platRepository): Response
+    public function Acceuil(PlatRepository $platRepository): Response
     {
         return $this->render('Pages/Menu.html.twig', [
             'plats' => $platRepository->findAll(),
@@ -38,7 +38,7 @@ class PlatController extends AbstractController
     
 
     #[Route('/AjouterUnPlat', name: 'AjouterPlat', methods: ['GET', 'POST'])]
-    public function new(Request $request, PlatRepository $platRepository ,CategorieRepository $categorie): Response
+    public function Ajouter(Request $request, PlatRepository $platRepository ,CategorieRepository $categorie): Response
     {
         $plat = new Plat();
         $form = $this->createForm(PlatType::class, $plat);
@@ -77,8 +77,8 @@ class PlatController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}', name: 'app_plat_show', methods: ['GET'])]
-    public function show(Plat $plat, CategorieRepository $categorie): Response
+    #[Route('/InformationsDuPlatN/{id}', name: 'InfosPlat', methods: ['GET'])]
+    public function InfosPlat(Plat $plat, CategorieRepository $categorie): Response
     {
         return $this->render('plat/About.html.twig', [
             'plat' => $plat,
@@ -86,8 +86,8 @@ class PlatController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}/edit', name: 'app_plat_edit', methods: ['GET', 'POST'])]
-    public function edit(Request $request, Plat $plat, PlatRepository $platRepository, CategorieRepository $categorie): Response
+    #[Route('/ModifierLePlatN/{id}', name: 'ModifierPlat', methods: ['GET', 'POST'])]
+    public function Modifier(Request $request, Plat $plat, PlatRepository $platRepository, CategorieRepository $categorie): Response
     {
         $form = $this->createForm(PlatType::class, $plat);
         $form->handleRequest($request);
@@ -101,15 +101,15 @@ class PlatController extends AbstractController
             return $this->redirectToRoute('Menu', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('plat/edit.html.twig', [
+        return $this->renderForm('plat/ModifierPlat.html.twig', [
             'plat' => $plat,
             'form' => $form,
             'categories'=>$categorie->findAll()
         ]);
     }
 
-    #[Route('/{id}', name: 'app_plat_delete', methods: ['POST'])]
-    public function delete(Request $request, Plat $plat, PlatRepository $platRepository,EntityManagerInterface $em): Response
+    #[Route('/SupprimerLePlatN/{id}', name: 'SupprimerPlat', methods: ['POST'])]
+    public function Supprimer(Request $request, Plat $plat, PlatRepository $platRepository,EntityManagerInterface $em): Response
     {
         if ($this->isCsrfTokenValid('delete'.$plat->getId(), $request->request->get('_token'))) {
             $plat->setStatut(false);
@@ -119,7 +119,16 @@ class PlatController extends AbstractController
         return $this->redirectToRoute('Menu', [], Response::HTTP_SEE_OTHER);
     }
 
-    #[Route('/{id}/restor', name: 'app_plat_restauration', methods: ['POST', 'GET'])]
+    
+    #[Route('/SupprimerDefinitivementLePlatN/{id}', name: 'SupprimerDef', methods: ['POST', 'GET'])]
+    public function SupprimerDef(Request $request, Plat $plat, PlatRepository $platRepository): Response
+    {
+            $platRepository->remove($plat);
+
+        return $this->redirectToRoute('Menu', [], Response::HTTP_SEE_OTHER);
+    }
+
+    #[Route('/RestaurerLePlatN/{id}', name: 'RestaurerPlat', methods: ['POST', 'GET'])]
     public function restaurer(Request $request, Plat $plat, PlatRepository $platRepository,EntityManagerInterface $em): Response
     {
             $plat->setStatut(true);
