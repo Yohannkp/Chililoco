@@ -1,0 +1,49 @@
+{% extends 'base.html.twig' %}
+{% block class %} sub_page {% endblock %}
+{% block ListMenu %}
+
+      
+    <section class="u-align-center u-clearfix u-section-1" id="carousel_517f">
+      <a href="{{ path('Menu') }}"><i class="fa fa-backward" aria-hidden="true"></i></a>
+      
+      <div class="u-clearfix u-sheet u-valign-middle-lg u-sheet-1">
+        <a href="https://nicepage.com/c/table-website-templates" class="u-active-none u-btn u-button-style u-hover-none u-none u-text-hover-palette-2-base u-text-palette-1-base u-btn-1" data-animation-name="pulse" data-animation-duration="1000" data-animation-direction=""><span class="u-file-icon u-icon"><img src="images/507257.png" alt=""></span>&nbsp;
+        </a><!--product--><!--product_options_json--><!--{"source":""}--><!--/product_options_json--><!--product_item-->
+        <div class="u-container-style u-expanded-width u-grey-5 u-product u-product-1">
+          <div class="u-container-layout u-container-layout-1"><!--product_image-->
+            <img src="{{asset('images/PlatImages/')~ plat.image}}" alt="" class="u-image u-image-default u-product-control u-image-1" data-image-width="750" data-image-height="750"><!--/product_image-->
+            <div class="u-container-style u-group u-shape-rectangle u-white u-group-1">
+              <div class="u-container-layout u-container-layout-2"><!--product_title-->
+                <h2 class="u-align-center u-product-control u-text u-text-default u-text-1">
+                  <a class="u-product-title-link" href="#"><!--product_title_content-->Sample Product<!--/product_title_content--></a>
+                </h2><!--/product_title--><!--product_price-->
+                <div class="u-product-control u-product-price u-product-price-1">
+                  <div class="u-price-wrapper u-spacing-10"><!--product_old_price-->
+                    <div class="u-hide-price u-old-price" style="text-decoration: line-through !important;" wfd-invisible="true"><!--product_old_price_content-->$12<!--/product_old_price_content--></div><!--/product_old_price--><!--product_regular_price-->
+                    <div class="u-price" style="font-size: 4.5rem; font-weight: 700;"><!--product_regular_price_content-->$9.95<!--/product_regular_price_content--></div><!--/product_regular_price-->
+                  </div>
+                </div><!--/product_price--><!--product_content-->
+                <div class="u-align-center u-product-control u-product-desc u-text u-text-grey-15 u-text-2"><!--product_content_content-->
+                  <p>Sample text. Lorem ipsum dolor sit amet, consectetur adipiscing elit nullam nunc justo sagittis suscipit ultrices.</p><!--/product_content_content-->
+                </div><!--/product_content--><!--product_button--><!--options_json--><!--{"clickType":"add-to-cart","content":"Boutton"}--><!--/options_json-->
+                <a href="{{ path('app_plat_edit', {'id': plat.id}) }}" style="float: left;" class="u-btn u-button-style u-hover-feature u-hover-palette-1-dark-1 u-product-control u-btn-2" data-animation-name="customAnimationIn" data-animation-duration="1000" data-animation-direction=""><!--product_button_content-->Modifier<!--/product_button_content--></a><!--/product_button-->
+                {% if plat.statut == false %}
+                <a href="{{path('app_plat_restauration', {'id': plat.id})}}" style="margin-top: 80px;" class="u-btn u-button-style u-hover-palette-1-dark-1 u-palette-1-base u-btn-3" data-animation-name="customAnimationIn" data-animation-duration="1000">Restaurer</a>
+                {% else %}
+                <form method="post" action="{{ path('app_plat_delete', {'id': plat.id}) }}" style="margin-left: 280px;"  onsubmit="return confirm('Are you sure you want to delete this item?');">
+                  <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ plat.id) }}">
+                  <button class="u-btn u-button-style u-hover-feature u-hover-palette-1-dark-1 u-product-control u-btn-2" data-animation-name="customAnimationIn" data-animation-duration="1000" data-animation-direction="">Delete</button>
+              </form>
+                {% endif %}
+              </div>
+            </div>
+          </div>
+        </div><!--/product_item--><!--/product-->
+      </div>
+      
+    </section>
+    
+    
+    
+
+{% endblock %}
