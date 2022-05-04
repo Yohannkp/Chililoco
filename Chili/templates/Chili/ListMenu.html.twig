@@ -65,10 +65,14 @@
       
       <div class="btn-box">
         {% if is_granted('ROLE_RESPONSABLE') %}
+        {% if titre == "Corbeille" %}
+        {% else %}
         <a href="{{path('corbeille')}}">
           <i class="fa fa-trash" aria-hidden="true">
           </i>Corbeille
         </a>  
+        {% endif %}
+        
         {% endif %}
       </div>
     </div>
