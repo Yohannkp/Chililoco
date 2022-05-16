@@ -2,7 +2,7 @@
     <div class="container">
       <div class="heading_container heading_center">
         <h2>
-          {{titre}}
+          Notre Menu
         </h2>
       </div>
 
@@ -14,11 +14,10 @@
       </ul>
 
       <ul class="filters_menu">
-        <li class="active" data-filter="*">All</li>
-        <li data-filter=".Burger">Burger</li>
-        <li data-filter=".Pizza">Pizza</li>
-        <li data-filter=".Boisson">Boisson</li>
-        <li data-filter=".Frittes">Frittes</li>
+       <li class="active" data-filter="*">All</li>
+      {% for categorie in categories %}
+        <li data-filter=".{{ categorie.libelle }}">{{ categorie.libelle }}</li>
+      {% endfor %}
       </ul>
 
       <div class="filters-content">

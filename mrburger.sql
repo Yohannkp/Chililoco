@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : mar. 03 mai 2022 à 17:01
+-- Généré le : lun. 16 mai 2022 à 02:11
 -- Version du serveur : 10.4.22-MariaDB
 -- Version de PHP : 8.0.13
 
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de données : `chililoco`
+-- Base de données : `mrburger`
 --
 
 -- --------------------------------------------------------
@@ -42,16 +42,7 @@ CREATE TABLE `actions_infos` (
 --
 
 INSERT INTO `actions_infos` (`id`, `creer_par`, `creer_le`, `modifier_par`, `modifier_le`, `enable`, `dtype`) VALUES
-(1, 'YohanMajoie', '2022-05-03', NULL, NULL, 1, 'admin'),
-(2, 'YohanMajoie', '2022-05-03', NULL, NULL, 1, 'responsable'),
-(3, 'majoie', '2022-05-03', NULL, NULL, 1, 'categorie'),
-(4, 'majoie', '2022-05-03', NULL, NULL, 1, 'categorie'),
-(5, 'majoie', '2022-05-03', NULL, NULL, 1, 'categorie'),
-(6, 'majoie', '2022-05-03', NULL, NULL, 1, 'categorie'),
-(7, 'majoie', '2022-05-03', NULL, NULL, 1, 'plat'),
-(8, 'majoie', '2022-05-03', NULL, NULL, 1, 'plat'),
-(9, 'majoie', '2022-05-03', NULL, NULL, 1, 'categorie'),
-(10, 'majoie', '2022-05-03', NULL, NULL, 1, 'plat');
+(1, 'YohanMajoie', '2022-05-15', NULL, NULL, 1, 'admin');
 
 -- --------------------------------------------------------
 
@@ -81,17 +72,6 @@ CREATE TABLE `categorie` (
   `libelle` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
---
--- Déchargement des données de la table `categorie`
---
-
-INSERT INTO `categorie` (`id`, `libelle`) VALUES
-(3, 'Burger'),
-(4, 'Pizza'),
-(5, 'Pasta'),
-(6, 'Fries'),
-(9, 'burger');
-
 -- --------------------------------------------------------
 
 --
@@ -109,7 +89,7 @@ CREATE TABLE `doctrine_migration_versions` (
 --
 
 INSERT INTO `doctrine_migration_versions` (`version`, `executed_at`, `execution_time`) VALUES
-('DoctrineMigrations\\Version20220502225946', '2022-05-03 00:59:51', 1692);
+('DoctrineMigrations\\Version20220502225946', '2022-05-16 01:44:10', 714);
 
 -- --------------------------------------------------------
 
@@ -134,8 +114,7 @@ CREATE TABLE `personne` (
 --
 
 INSERT INTO `personne` (`id`, `nom`, `prenom`, `email`, `telephone`, `mot_de_passe`, `roles`, `username`, `image`) VALUES
-(1, 'FAYA', 'lidao', 'majoiefaya@gmail.com', 96329943, '$2y$13$XClUWdbl91nCdYGvRr727uxaofbrCJ14nsFfGZ.t9s1Pk0AEXFF9u', '[\"ROLE_ADMIN\"]', 'majoie', 'istockphoto-881484526-1024x1024.jpg'),
-(2, 'LANGUIE', 'Mansama', 'Mansama@gmail.com', 90126888, '$2y$13$wCEMM1gG30RMsgC.cQ7EYun0f93MNaJe7Ec8l/2hGtIlsqg6v5DGu', '[\"ROLE_RESPONSABLE\"]', 'LANGJO', 'DEVELOPPEMENT WEB.jpg');
+(1, 'FAYA', 'Lidao Majoie', 'majoiefaya@gmail.com', 96329943, '$2y$13$kvFvZyLdt98XTzacqQiJtu0xpE8OUYgj8cgYt9cCzzDTUU3OhxnAi', '[\"ROLE_ADMIN\"]', 'majoie', 'weinkeller-palais-coburg-frankreichkeller.jpg');
 
 -- --------------------------------------------------------
 
@@ -155,15 +134,6 @@ CREATE TABLE `plat` (
   `statut` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
---
--- Déchargement des données de la table `plat`
---
-
-INSERT INTO `plat` (`id`, `personne_id`, `categorie_plat_id`, `libelle`, `image`, `prix`, `description`, `categorie`, `statut`) VALUES
-(7, NULL, 4, 'Burger', 'sliced-fruits-on-tray-1132047.jpg', 15000, 'cc', '3', 1),
-(8, NULL, 3, 'Burger', 'i26162-salade-de-fruits-d-ete-facile.jpg', 15000, 'sdfghjkl', '3', 1),
-(10, NULL, 9, 'nouriture', 'i127250-salade-de-fruits-des-iles-au-rhum.jpeg', 15000, 'dfghjk', '9', 1);
-
 -- --------------------------------------------------------
 
 --
@@ -174,13 +144,6 @@ CREATE TABLE `responsable` (
   `id` int(11) NOT NULL,
   `fonction` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Déchargement des données de la table `responsable`
---
-
-INSERT INTO `responsable` (`id`, `fonction`) VALUES
-(2, 'RESPONSABLE');
 
 --
 -- Index pour les tables déchargées
@@ -238,7 +201,7 @@ ALTER TABLE `responsable`
 -- AUTO_INCREMENT pour la table `actions_infos`
 --
 ALTER TABLE `actions_infos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- Contraintes pour les tables déchargées
