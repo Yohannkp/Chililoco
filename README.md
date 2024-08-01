@@ -29,16 +29,7 @@ Avant de commencer, assurez-vous d'avoir installé :
 - [MySQL](https://www.mysql.com/) (ou [MariaDB](https://mariadb.org/) comme alternative)
 - [Symfony CLI](https://symfony.com/download) (pour les commandes Symfony)
 
-### Installation
 
-Pour configurer et exécuter **Chili Loco** en local, suivez ces étapes :
-
-#### 1. Cloner le Dépôt
-
-```bash
-git clone https://github.com/yourusername/chili-loco.git
-cd chili-loco
-####
 ![CHEESE!](acceuil.png).
 ![CHEESE!](image1.png).
 ![CHEESE!](image2.png).
