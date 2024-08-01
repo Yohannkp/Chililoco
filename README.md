@@ -29,7 +29,54 @@ Avant de commencer, assurez-vous d'avoir installé :
 - [MySQL](https://www.mysql.com/) (ou [MariaDB](https://mariadb.org/) comme alternative)
 - [Symfony CLI](https://symfony.com/download) (pour les commandes Symfony)
 
+Créer une Base de Données :
 
+Ouvrez phpMyAdmin depuis le panneau de contrôle XAMPP.
+Créez une nouvelle base de données pour votre application.
+Configurer les Paramètres de Connexion :
+
+Copiez le fichier .env.example en .env :
+bash
+Copier le code
+cp .env.example .env
+Modifiez le fichier .env pour configurer les paramètres de connexion à la base de données en fonction de votre configuration XAMPP. Assurez-vous que la ligne suivante est correctement définie :
+dotenv
+Copier le code
+DATABASE_URL=mysql://root:@127.0.0.1:3306/nom_de_votre_base_de_donnees
+4. Installer les Dépendances
+Installez les dépendances PHP avec Composer :
+
+bash
+Copier le code
+composer install
+5. Appliquer les Migrations
+Créez les tables de la base de données en appliquant les migrations :
+
+bash
+Copier le code
+php bin/console doctrine:migrations:migrate
+6. Démarrer le Serveur Symfony
+Vous pouvez utiliser le serveur de développement intégré de Symfony pour exécuter l'application localement :
+
+bash
+Copier le code
+php bin/console server:run
+Accédez ensuite à l'application à l'adresse http://localhost:8000.
+
+Tests
+Pour exécuter les tests de l'application, utilisez la commande suivante :
+
+bash
+Copier le code
+php bin/console test
+Contribuer
+Les contributions sont les bienvenues ! Pour participer :
+
+Forker le Dépôt.
+Créer une Branche pour votre fonctionnalité ou correction :
+bash
+Copier le code
+git checkout -b feature/nom-de-votre-fonctionnalité
 ![CHEESE!](acceuil.png).
 ![CHEESE!](image1.png).
 ![CHEESE!](image2.png).
