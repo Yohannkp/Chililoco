@@ -38,7 +38,7 @@ Pour configurer et exécuter **Chili Loco** en local, suivez ces étapes :
 ```bash
 git clone https://github.com/yourusername/chili-loco.git
 cd chili-loco
-
+####
 ![CHEESE!](acceuil.png).
 ![CHEESE!](image1.png).
 ![CHEESE!](image2.png).
